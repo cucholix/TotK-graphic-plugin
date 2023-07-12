@@ -1,28 +1,14 @@
-# MonHunRiseResPlugin
-Skyline plugin for Monster Hunter Rise to override resolution
+# TotK-graphic-plugin
+Skyline plugin for The Legend of Zelda: Tears of the Kingdom to override resolution
 
 ![GitHub all releases](https://img.shields.io/github/downloads/masagrator/MonHunRiseResPlugin/total)
 
 # End-user Usage
-In release there are files that by default are setting handheld resolution to 720p and docked to 1080p.
 
-If you want to change anything, you need to use "Patch.cmd". 
-It is required to have `Windows`, `Python 3` and "keystone-engine" python library installed for it to work.
-
-```cmd
-pip3 install keystone-engine
-```
-
-For other systems you need to manually compile nsnsotool</br>
-https://github.com/0CBH0/nsnsotool</br>
-And use it for decompression and compression of subsdk9
-
-It wasn't tested on Japanese release. Only Western.
-
-Put folder `0100B04011742000` to `atmosphere\contents` and start game.</br>
+Put folder `0100F2C0115B6000` to `atmosphere\contents` and start game.</br>
 Boot time may be increased by few seconds.</br>
-It should work with all game versions (confirmed working on 2.0.0 and 3.2.0).
+It should work with all game versions (confirmed working on 1.1.2 and 1.2.0).
 
 # Thanks to
 - The Skyline Project
-- cucholix for testing
+- masagrator for his MonHunRiseResPlugin wich I used as template for this project 
