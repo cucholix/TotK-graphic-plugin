@@ -10,7 +10,7 @@ void skyline_main() {
     skyline::utils::Ipc::getOwnProcessHandle(&h);
     envSetOwnProcessHandle(h);
 
-    MHR_main();
+    totk_graphics_main();
 }
 
 extern "C" void skyline_init() {
