@@ -17,4 +17,4 @@ skyline:
 
 clean:
 	$(MAKE) clean -f $(MAKE_NSO)
-	rm -r -f 0100B04011742000
+	rm -r -f 0100F2C0115B6000
