@@ -1,1 +1,1 @@
-void MHR_main();
+void totk_graphics_main();
