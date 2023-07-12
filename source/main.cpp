@@ -1,5 +1,5 @@
 #include "main.hpp"
-#include "MHR/main_patch.hpp"
+#include "TotK/main_patch.hpp"
 
 #include "skyline/utils/cpputils.hpp"
 #include "skyline/utils/ipc.hpp"
