@@ -7,7 +7,7 @@ Skyline plugin for The Legend of Zelda: Tears of the Kingdom override several gr
 
 Put folder `0100F2C0115B6000` to `atmosphere\contents` and start game.</br>
 Boot time may be increased by few seconds.</br>
-It should work with all game versions (confirmed working on 1.1.2 and 1.2.0).
+It should work with all game versions (confirmed working on 1.1.2, 1.2.0 and 1.2.1).
 
 # Thanks to
 - The Skyline Project
