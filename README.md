@@ -1,7 +1,7 @@
 # TotK-graphic-plugin
 Skyline plugin for The Legend of Zelda: Tears of the Kingdom override several graphics settings
 
-![GitHub all releases](https://img.shields.io/github/downloads/masagrator/MonHunRiseResPlugin/total)
+![GitHub all releases](https://img.shields.io/github/downloads/cucholix/TotK-graphic-plugin/total)
 
 # End-user Usage
 
