@@ -2,13 +2,13 @@
 #include "skyline/utils/cpputils.hpp"
 #include "skyline/inlinehook/memcpy_controlled.hpp"
 
-//69 00 80 52 08 0D 02 53 
+//69 00 80 52 08 0D 02 53
 constinit uint8_t textFilter[8] = {0x69, 0x00, 0x80, 0x52, 0x08, 0x0D, 0x02, 0x53};
 							 
 //A9 00 80 52
 constinit uint8_t textFilter_p[4] = {0xA9, 0x00, 0x80, 0x52};
 
-//80 12 40 BD E0 03 13 AA (has 2 matches /!\) 
+//80 12 40 BD E0 03 13 AA (has 2 matches /!\)
 constinit uint8_t mipmapbias[8] = {0x80, 0x12, 0x40, 0xBD, 0xE0, 0x03, 0x13, 0xAA};
 							 
 //00 10 3D 1E
@@ -23,30 +23,36 @@ constinit uint8_t shadowDist_p[16] = {0xB2, 0x0E, 0x30, 0x1E, 0x1F, 0x20, 0x03, 
 //0B 02 38 1E EC 02 38 36
 constinit uint8_t shadowRes[8] = {0x0B, 0x02, 0x38, 0x1E, 0xEC, 0x02, 0x38, 0x36};
 							 
-//0B A0 80 52
-constinit uint8_t shadowRes_p[4] = {0x0B, 0xA0, 0x80, 0x52};
+//0B 80 80 52
+constinit uint8_t shadowRes_p[4] = {0x0B, 0x80, 0x80, 0x52};
 
-//FB 03 1F AA 08 10 2E 1E 02 10 2C 1E
-constinit uint8_t FXAA_1[12] = {0xFB, 0x03, 0x1F, 0xAA, 0x08, 0x10, 0x2E, 0x1E, 0x02, 0x10, 0x2C, 0x1E};
+//08 00 40 39 E0 03 14 AA 68 72 05 39
+constinit uint8_t FXAA[12] = {0x08, 0x00, 0x40, 0x39, 0xE0, 0x03, 0x14, 0xAA, 0x68, 0x72, 0x05, 0x39};
 
-//FB 03 1F AA 08 10 2E 1E 02 10 2B 1E
-constinit uint8_t FXAA_1_p[12] = {0xFB, 0x03, 0x1F, 0xAA, 0x08, 0x10, 0x2E, 0x1E, 0x02, 0x10, 0x2B, 0x1E};
+//08 00 80 52
+constinit uint8_t FXAA_p[4] = {0x08, 0x00, 0x80, 0x52};
+
+//08 00 40 39 BF 22 00 71 68 76 05 39
+constinit uint8_t FXAA_2[12] = {0x08, 0x00, 0x40, 0x39, 0xBF, 0x22, 0x00, 0x71, 0x68, 0x76, 0x05, 0x39};
+
+//08 00 80 52
+constinit uint8_t FXAA_2_p[4] = {0x08, 0x00, 0x80, 0x52}; 
 
 //3F 09 00 71 03 08 22 1E
-constinit uint8_t FXAA_2[8] = {0x3F, 0x09, 0x00, 0x71, 0x03, 0x08, 0x22, 0x1E};
+constinit uint8_t FXAA_char[8] = {0x3F, 0x09, 0x00, 0x71, 0x03, 0x08, 0x22, 0x1E};
 
 //3F 05 00 71
-constinit uint8_t FXAA_2_p[4] = {0x3F, 0x05, 0x00, 0x71};
+constinit uint8_t FXAA_char_p[4] = {0x3F, 0x05, 0x00, 0x71}; 
 
-//01 10 24 1E 00 08 21 1E (has 2 matches /!\) 
-constinit uint8_t FXAA_3[8] = {0x01, 0x10, 0x24, 0x1E, 0x00, 0x08, 0x21, 0x1E};
+//FF 43 01 D1 E9 23 01 6D FD 7B 02 A9 FD 83 00 91 F6 57 03 A9 F4 4F 04 A9 08 18 46 F9
+constinit uint8_t res1080pRet[28] = {0xFF, 0x43, 0x01, 0xD1, 0xE9, 0x23, 0x01, 0x6D, 0xFD, 0x7B, 0x02, 0xA9, 0xFD, 0x83, 0x00, 0x91, 0xF6, 0x57, 0x03, 0xA9, 0xF4, 0x4F, 0x04, 0xA9, 0x08, 0x18, 0x46, 0xF9};
 
-//01 D0 27 1E 
-constinit uint8_t FXAA_3_p[4] = {0x01, 0xD0, 0x27, 0x1E};
+//C0 03 5F D6
+constinit uint8_t res1080pRet_p[4] = {0xC0, 0x03, 0x5F, 0xD6};
 
 
 bool memcmp_f (const unsigned char *s1, const unsigned char *s2, size_t count) {
-    while (count-- > 0) 
+    while (count-- > 0)
         if (*s1++ != *s2++) 
             return false;
     return true;
@@ -89,16 +95,20 @@ void totk_graphics_main() {
     if (pointer) {
         sky_memcpy((void*)pointer, &shadowRes_p[0], sizeof(shadowRes_p));
     }
-    	pointer = findTextCode(&FXAA_1[0], sizeof(FXAA_1));
+	pointer = findTextCode(&FXAA[0], sizeof(FXAA));
     if (pointer) {
-        sky_memcpy((void*)pointer, &FXAA_1_p[0], sizeof(FXAA_1_p));
+        sky_memcpy((void*)pointer, &FXAA_p[0], sizeof(FXAA_p));
     }
-    	pointer = findTextCode(&FXAA_2[0], sizeof(FXAA_2));
+	pointer = findTextCode(&FXAA_2[0], sizeof(FXAA_2));
     if (pointer) {
         sky_memcpy((void*)pointer, &FXAA_2_p[0], sizeof(FXAA_2_p));
     }
-    	pointer = findTextCode(&FXAA_3[0], sizeof(FXAA_3));
+	pointer = findTextCode(&FXAA_char[0], sizeof(FXAA_char));
     if (pointer) {
-        sky_memcpy((void*)pointer, &FXAA_3_p[0], sizeof(FXAA_3_p));
+        sky_memcpy((void*)pointer, &FXAA_char_p[0], sizeof(FXAA_char_p));
+    }
+	pointer = findTextCode(&res1080pRet[0], sizeof(res1080pRet));
+    if (pointer) {
+        sky_memcpy((void*)pointer, &res1080pRet_p[0], sizeof(res1080pRet));
     }
 }
